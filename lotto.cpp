@@ -11,7 +11,9 @@ int main(int argc, char** args) {
 	elozo();
 	//stat1();
 	//stat2();
-	proba1();
+	
+	for(uint i = 0; i < 10; i++) 
+		proba1();
 	
 	return 1;
 }
@@ -28,24 +30,28 @@ void elozo() {
 }
 
 void proba1() {
-	printf("utolso	| %d %d %d %d %d\n", 
+	/* printf("utolso	| %d %d %d %d %d\n", 
 	lottok[0].szamok[0], 
 	lottok[0].szamok[1], 
 	lottok[0].szamok[2], 
 	lottok[0].szamok[3], 
-	lottok[0].szamok[4]);
+	lottok[0].szamok[4]); */
 	
-	
-	for(uint i = 0; i < 10; i++) {
+	for(uint i = 0;; i++) {
 		uint r[5];
 		
-		for(uint i = 0; i < 5; i++) {
-			r[i] = rand() % 95 + 1;
+		uint t = 0;
+		for(uint x = 0; x < 5; x++) {
+			r[x] = (uint)(rand() % 95 + 1);
+			t += cin_array(r[x], lottok[0].szamok, 5);
 		}
 		
-		uint t = cin_array(r, 5, lottok[0].szamok, 5);
+		//uint t = cin_array(r, 5, lottok[0].szamok, 5);
 		
-		printf("t: %d | %d %d %d %d %d\n", t, r[0], r[1], r[2], r[3], r[4]);
+		if( t > 4 ) {
+			printf("%d. t: %d | %d %d %d %d %d\n", i+1, t, r[0], r[1], r[2], r[3], r[4]);
+			break;
+		}
 	}
 }
 
