@@ -1,5 +1,7 @@
 #include <cstdio>
+#include <cstdlib>
 #include <vector>
+#include "time.h"
 
 using namespace std;
 
@@ -55,6 +57,9 @@ bool readFile(const char* filename);
 void elozo();
 void stat1();
 void stat2();
+void proba1();
 
 bool in_array(uint number, uint *array, uint size);
 bool in_array(uint *a1, uint s1, uint *a2, uint s2);
+uint cin_array(uint number, uint *array, uint size);
+uint cin_array(uint *a1, uint s1, uint *a2, uint s2);

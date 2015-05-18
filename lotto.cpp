@@ -1,6 +1,7 @@
 #include "lotto.h"
 
 int main(int argc, char** args) {
+	srand (time(NULL));
 	
 	if( !readFile("otos.csv") )
 		return 0;
@@ -9,7 +10,8 @@ int main(int argc, char** args) {
 	
 	elozo();
 	//stat1();
-	stat2();
+	//stat2();
+	proba1();
 	
 	return 1;
 }
@@ -23,6 +25,28 @@ void elozo() {
 	}
 	
 	printf("Elozo: %d/%d = %.3f\n", c, lottok.size(), ((float)c / (float)lottok.size()) * 100.0f);
+}
+
+void proba1() {
+	printf("utolso	| %d %d %d %d %d\n", 
+	lottok[0].szamok[0], 
+	lottok[0].szamok[1], 
+	lottok[0].szamok[2], 
+	lottok[0].szamok[3], 
+	lottok[0].szamok[4]);
+	
+	
+	for(uint i = 0; i < 10; i++) {
+		uint r[5];
+		
+		for(uint i = 0; i < 5; i++) {
+			r[i] = rand() % 95 + 1;
+		}
+		
+		uint t = cin_array(r, 5, lottok[0].szamok, 5);
+		
+		printf("t: %d | %d %d %d %d %d\n", t, r[0], r[1], r[2], r[3], r[4]);
+	}
 }
 
 void stat1() {
@@ -66,7 +90,6 @@ void stat2() {
 			printf("%d: %d / %d (%.2f)\n", i+1, c[i], ossz, ((float)c[i] / (float)ossz) * 100.f);
 		}
 	}
-	
 	
 }
 
@@ -145,4 +168,26 @@ bool in_array(uint *a1, uint s1, uint *a2, uint s2) {
 	}
 	
 	return false;
+}
+
+uint cin_array(uint number, uint *array, uint size) {
+	uint c = 0;
+	
+	for(uint i = 0; i < size; i++) {
+		if( array[i] == number )
+			c++;
+	}
+	
+	return c;
+}
+
+uint cin_array(uint *a1, uint s1, uint *a2, uint s2) {
+	uint c = 0;
+	
+	for(uint i = 0; i < s1; i++) {
+		if( in_array(a1[i], a2, s2) )
+			return c++;
+	}
+	
+	return c;
 }
